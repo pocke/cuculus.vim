@@ -3,7 +3,6 @@ execute "ruby require '" . s:self_path . ".rb'"
 
 function! cuculus#jump() abort
   let pair = s:find_pair()
-  echom string(pair)
   if type(pair) == type([])
     call cursor(pair[0], pair[1]+1)
   endif

@@ -17,8 +17,11 @@ function! s:find_pair() abort
       line: Vim.evaluate('line(".")'),
       column: Vim.evaluate('col(".")'),
     )
-    res = pair ? [pair.line, pair.column] : nil
-    Vim.command 'let s:result = ' + JSON.generate(res)
+    if pair
+      Vim.command 'let s:result = ' + JSON.generate([pair.line, pair.column])
+    else
+      Vim.command 'let s:result = v:null'
+    end
 RUBY
   let l:result = s:result
   unlet s:result

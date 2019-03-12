@@ -55,5 +55,7 @@ class Cuculus
         end
       end
     end
+
+    return nil
   end
 end

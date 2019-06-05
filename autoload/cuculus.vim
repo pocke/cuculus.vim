@@ -8,6 +8,28 @@ function! cuculus#jump() abort
   endif
 endfunction
 
+function! cuculus#display_pair_to_popup() abort
+  let code = s:pair_code_of_line()
+  if type(code) != type("")
+    return
+  endif
+
+  let code = "# " . trim(code)
+
+  let col = len(getline('.')) + 3
+  call popup_create(code, { "moved": "any", "line": "cursor", "col": col, "highlight": "Comment" })
+endfunction
+
+function! s:pair_code_of_line() abort
+  let pair = s:find_pair()
+  if type(pair) != type([])
+    return v:null
+  endif
+
+  let line = pair[0]
+  return getline(line)
+endfunction
+
 function! s:find_pair() abort
   ruby <<RUBY
     # TODO: encoding, multi-bytes character count

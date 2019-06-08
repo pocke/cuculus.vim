@@ -9,6 +9,13 @@ function! cuculus#jump() abort
 endfunction
 
 function! cuculus#display_pair_to_popup() abort
+  if &filetype !~ '\v<ruby>'
+    return
+  endif
+  if expand('<cword>') != 'end'
+    return
+  endif
+
   let code = s:pair_code_of_line()
   if type(code) != type("")
     return

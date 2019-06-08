@@ -26,5 +26,5 @@ Advanced Usage: Display pair code with popup window
 ![screenshot](https://user-images.githubusercontent.com/4361134/58955110-fafa4400-87d5-11e9-804f-640c10fe0aa2.gif)
 
 ```vim
-autocmd CursorMoved *.rb call cuculus#display_pair_to_popup()
+autocmd CursorMoved * call cuculus#display_pair_to_popup()
 ```

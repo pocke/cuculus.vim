@@ -37,7 +37,9 @@ class Cuculus
   end
 
   def pair_range(code:, line:, column:)
-    ast = Parser::CurrentRuby.parse(code)
+    ast = Cuculus.silent do
+      Parser::CurrentRuby.parse(code)
+    end
 
     traverse(ast) do |node|
       keyword_range = range(node, :keyword) || range(node, :begin)
@@ -56,6 +58,8 @@ class Cuculus
       end
     end
 
+    return nil
+  rescue Parser::SyntaxError
     return nil
   end
 end

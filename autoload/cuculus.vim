@@ -23,7 +23,8 @@ function! cuculus#display_pair_to_popup() abort
 
   let code = "# " . trim(code)
 
-  let col = len(getline('.')) + 3
+  let offset = win_screenpos(winnr())[1]
+  let col = len(getline('.')) + offset + 2
   call popup_create(code, { "moved": "any", "line": "cursor", "col": col, "highlight": "Comment" })
 endfunction
 

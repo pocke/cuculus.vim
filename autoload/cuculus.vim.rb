@@ -1,3 +1,5 @@
+require 'stringio'
+
 class Cuculus
   def self.silent(&block)
     $stderr = StringIO.new
